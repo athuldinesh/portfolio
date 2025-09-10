@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Athul Dinesh – Senior Web Developer</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #12c2e9;
+      --accent2: #c471ed;
+      --accent3: #f64f59;
+      --bg: #101820;
+      --bg2: #181c2b;
+      --fg: #fff;
+      --muted: #bdbdbd;
+      --radius: 18px;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+    }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    /* 3D HERO SECTION */
+    .hero3d-wrap {
+      width: 100%;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: linear-gradient(120deg, var(--accent)20%, var(--bg2) 70%);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 40px #12c2e925;
+      margin-bottom: 3rem;
+      overflow: hidden;
+    }
+    #hero3d-canvas {
+      width: 100%;
+      height: 400px;
+      display: block;
+      background: transparent;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero-content {
+      z-index: 2;
+      position: relative;
+      width: 100%;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    .hero-title {
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: -2px;
+      margin: 0 0 0.7rem 0;
+      background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-role {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--fg);
+      margin-bottom: 0.7rem;
+      letter-spacing: 0.5px;
+    }
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-cta {
+      display: inline-block;
+      padding: 0.8rem 2.2rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 999px;
+      color: #fff;
+      background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3));
+      font-size: 1.1rem;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 24px #12c2e950;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .hero-cta:hover {
+      transform: scale(1.07);
+      box-shadow: 0 8px 32px #c471ed70;
+    }
+    /* SECTION TITLES */
+    .section-title {
+      font-size: 2rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1.2rem;
+      text-align: center;
+      background: linear-gradient(90deg, var(--accent), var(--accent3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    /* PROJECTS GRID */
+    .projects-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.4rem;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+    }
+    .project-card {
+      background: var(--bg2);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 16px #12c2e930;
+      padding: 1.5rem 1.3rem 1.1rem 1.3rem;
+      min-width: 240px;
+      max-width: 320px;
+      flex: 1 1 250px;
+      color: var(--fg);
+      text-decoration: none;
+      transition: box-shadow 0.2s, transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      position: relative;
+    }
+    .project-card:hover {
+      box-shadow: 0 8px 32px #12c2e970;
+      transform: translateY(-6px) scale(1.03);
+    }
+    .project-card h3 {
+      margin: 0 0 0.2rem 0;
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: var(--accent2);
+    }
+    .project-card p {
+      color: var(--muted);
+      margin: 0 0 0.3rem 0;
+      font-size: 1rem;
+      flex: 1;
+    }
+    .project-card .project-link {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: underline;
+      margin-top: 0.2rem;
+      align-self: flex-end;
+    }
+    /* SKILLS */
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .skill-badge {
+      background: linear-gradient(90deg, var(--accent), var(--accent3));
+      color: #fff;
+      padding: 0.55rem 1.3rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 10px #c471ed25;
+      margin-bottom: 0.2rem;
+      user-select: none;
+      transition: background 0.15s;
+    }
+    /* CONTACT */
+    .contact-section {
+      text-align: center;
+      margin: 3rem 0 2rem 0;
+    }
+    .contact-details {
+      margin: 1rem 0 0.6rem 0;
+      line-height: 2.1;
+      font-size: 1.1rem;
+    }
+    .contact-details a {
+      color: var(--accent2);
+      font-weight: 600;
+      text-decoration: none;
+      margin: 0 0.6rem;
+      transition: color 0.18s;
+    }
+    .contact-details a:hover {
+      color: var(--accent3);
+      text-decoration: underline;
+    }
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.98rem;
+      padding: 2rem 0 0.7rem 0;
+      margin-top: auto;
+    }
+    /* RESPONSIVE */
+    @media (max-width: 650px) {
+      .container {
+        padding: 0.7rem;
+      }
+      .hero-title {
+        font-size: 2rem;
+      }
+      .hero3d-wrap {
+        min-height: 320px;
+        padding-bottom: 1.5rem;
+      }
+      #hero3d-canvas {
+        height: 250px;
+      }
+      .projects-list {
+        flex-direction: column;
+        gap: 1.1rem;
+      }
+      .skills-list {
+        gap: 0.5rem;
+      }
+      .section-title {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- 3D HERO SECTION -->
+    <section class="hero3d-wrap">
+      <canvas id="hero3d-canvas"></canvas>
+      <div class="hero-content">
+        <div class="hero-title">Athul Dinesh</div>
+        <div class="hero-role">Senior Web Developer <span style="color:var(--muted);font-weight:400;">| Dubai, UAE</span></div>
+        <div class="hero-desc">
+          Creating immersive, high-performance digital experiences for international clients.<br>
+          <span style="color:#fff;font-weight:500;">Specialized in 3D web, React, and modern UI/UX.</span>
+        </div>
+        <a class="hero-cta" href="#contact">Let's Connect</a>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <div class="section-title">🌐 Featured Projects</div>
+    <div class="projects-list">
+      <a class="project-card" href="https://hamiltons.ae/" target="_blank">
+        <h3>Hamiltons Real Estate</h3>
+        <p>Luxury Dubai property platform with interactive search and 3D tours.</p>
+        <span class="project-link">Visit →</span>
+      </a>
+      <a class="project-card" href="https://keyspacedubai.com/" target="_blank">
+        <h3>Keyspace Dubai</h3>
+        <p>Smart real estate solutions for Dubai’s modern property market.</p>
+        <span class="project-link">Visit →</span>
+      </a>
+      <a class="project-card" href="https://keyspacerealty.com/" target="_blank">
+        <h3>Keyspace Realty</h3>
+        <p>End-to-end digital transformation for realty services.</p>
+        <span class="project-link">Visit →</span>
+      </a>
+      <a class="project-card" href="https://belacasalighting.com/" target="_blank">
+        <h3>Belacasa Lighting</h3>
+        <p>Elegant lighting e-commerce with immersive product previews.</p>
+        <span class="project-link">Visit →</span>
+      </a>
+    </div>
+    <div class="projects-list">
+      <a class="project-card" href="https://hamiltons.ae/masaar-3/" target="_blank">
+        <h3>Masaar 3</h3>
+        <p>Interactive landing for a smart, sustainable community.</p>
+        <span class="project-link">Visit →</span>
+      </a>
+      <a class="project-card" href="https://hamiltons.ae/sharjah-sustainable-city/" target="_blank">
+        <h3>Sharjah Sustainable City</h3>
+        <p>Showcasing sustainable living, with dynamic content.</p>
+        <span class="project-link">Visit →</span>
+      </a>
+      <a class="project-card" href="https://hamiltons.ae/maryam-island-sharjah/" target="_blank">
+        <h3>Maryam Island Sharjah</h3>
+        <p>Luxury waterfront project with parallax image effects.</p>
+        <span class="project-link">Visit →</span>
+      </a>
+    </div>
+    <div class="projects-list">
+      <a class="project-card" href="https://hamiltons.ae/why-peace-lagoons-residences/" target="_blank">
+        <h3>Peace Lagoons Residences</h3>
+        <p>Modern residences highlighted with immersive visuals.</p>
+        <span class="project-link">Visit →</span>
+      </a>
+      <a class="project-card" href="https://hamiltons.ae/why-uk-investors-choose-jumeirah-golf-estates/" target="_blank">
+        <h3>Jumeirah Golf Estates</h3>
+        <p>Why UK investors choose Dubai’s luxury golf living.</p>
+        <span class="project-link">Visit →</span>
+      </a>
+      <a class="project-card" href="https://hamiltons.ae/why-uk-residents-choose-dubai/" target="_blank">
+        <h3>Why UK Residents Choose Dubai</h3>
+        <p>Landing page for UK expats investing in Dubai real estate.</p>
+        <span class="project-link">Visit →</span>
+      </a>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="section-title">🛠️ Core Skills</div>
+    <div class="skills-list">
+      <span class="skill-badge">React.js</span>
+      <span class="skill-badge">Next.js</span>
+      <span class="skill-badge">Three.js</span>
+      <span class="skill-badge">TypeScript</span>
+      <span class="skill-badge">Framer Motion</span>
+      <span class="skill-badge">Node.js</span>
+      <span class="skill-badge">PHP</span>
+      <span class="skill-badge">WordPress</span>
+      <span class="skill-badge">GSAP</span>
+      <span class="skill-badge">REST APIs</span>
+      <span class="skill-badge">UI/UX</span>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="section-title" id="contact">📬 Contact</div>
+    <div class="contact-section">
+      <div class="contact-details">
+        <a href="mailto:athuldinesh.ad@gmail.com">athuldinesh.ad@gmail.com</a> &middot;
+        <a href="tel:+971507133653">+971 50 713 3653</a> &middot;
+        <span>Dubai, UAE</span>
+      </div>
+      <div style="color:var(--muted);margin-top:1rem;font-size:1.03rem;">
+        Available for freelance, contract, or full-time opportunities globally.<br>
+        <span style="color:#fff;font-weight:600;">Let’s build something amazing.</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    &copy; 2025 Athul Dinesh &mdash; Crafted with <span style="color:var(--accent2);">3D web</span>
+  </div>
+
+  <!-- THREE.JS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.154.0/build/three.min.js"></script>
+  <script>
+    // 3D Glass Sphere Hero
+    let scene, camera, renderer, sphere, frame = 0, hovered = false;
+
+    function init3DHero() {
+      const canvas = document.getElementById('hero3d-canvas');
+      const w = canvas.offsetWidth || canvas.parentElement.offsetWidth;
+      const h = canvas.offsetHeight || 400;
+      scene = new THREE.Scene();
+
+      camera = new THREE.PerspectiveCamera(60, w / h, 0.1, 100);
+      camera.position.set(0, 0, 4.8);
+
+      renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      renderer.setSize(w, h);
+      renderer.setPixelRatio(window.devicePixelRatio);
+
+      // Lighting
+      const ambient = new THREE.AmbientLight(0xffffff, 0.7);
+      scene.add(ambient);
+      const directional = new THREE.DirectionalLight(0xffffff, 1.0);
+      directional.position.set(4, 8, 12);
+      scene.add(directional);
+
+      // Sphere Material (glass)
+      const geometry = new THREE.SphereGeometry(1.18, 64, 64);
+      const material = new THREE.MeshPhysicalMaterial({
+        color: 0x12c2e9,
+        metalness: 0.5,
+        roughness: 0.1,
+        transmission: 0.92,
+        transparent: true,
+        thickness: 0.7,
+        ior: 1.6,
+        clearcoat: 1,
+        clearcoatRoughness: 0.04,
+        reflectivity: 0.74,
+        envMapIntensity: 1.3,
+        attenuationColor: 0xf64f59,
+        attenuationDistance: 0.6
+      });
+      sphere = new THREE.Mesh(geometry, material);
+      scene.add(sphere);
+
+      // Glow Effect
+      const glowMaterial = new THREE.MeshBasicMaterial({ color: 0xc471ed, transparent: true, opacity: 0.16 });
+      const glow = new THREE.Mesh(new THREE.SphereGeometry(1.4, 48, 48), glowMaterial);
+      scene.add(glow);
+
+      // Responsive
+      window.addEventListener('resize', () => {
+        const w = canvas.offsetWidth || canvas.parentElement.offsetWidth;
+        const h = canvas.offsetHeight || 400;
+        renderer.setSize(w, h);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+      });
+
+      // Pointer events
+      canvas.addEventListener('pointerenter', () => hovered = true);
+      canvas.addEventListener('pointerleave', () => hovered = false);
+
+      animate();
+    }
+
+    function animate() {
+      frame++;
+      // Animate rotation
+      sphere.rotation.y += 0.003 + (hovered ? 0.012 : 0);
+      sphere.rotation.x = Math.sin(frame / 120) * 0.18;
+      sphere.material.color.setHSL(0.57 + Math.sin(frame / 220) * 0.07, 0.8, 0.53);
+      sphere.material.thickness = 0.6 + 0.2 * Math.sin(frame / 70);
+
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    }
+
+    window.onload = init3DHero;
+  </script>
+</body>
+</html>
